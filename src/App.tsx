@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './index.css';
+import modviewImg from './assets/Modview.png';
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -100,7 +101,7 @@ function App() {
               <div className="widget bento-large" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.5))' }}>
                 <h2 style={{ margin: 0, textAlign: 'center' }}>ModView nRF52833<br/>BLE + RS485 Data Logger</h2>
                 <img 
-                  src="/assets/images/modview_nrf52833.png" 
+                  src={modviewImg}
                   alt="ModView Board" 
                   style={{ maxHeight: '280px', width: 'auto', borderRadius: '0.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', objectFit: 'contain' }} 
                 />
