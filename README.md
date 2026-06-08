@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# ModView Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About ModView
+ModView is a custom-designed embedded device developed for monitoring sensor data through industrial communication interfaces. The platform supports RS485 communication and is currently validated with a Soil 7-in-1 Modbus RS485 sensor. The system receives data from the sensor, processes it through the microcontroller, and displays the values on a local OLED display.
 
-Currently, two official plugins are available:
+The device is designed for portable operation using a rechargeable 18650 Li-ion battery and includes a user-controlled power switch for energy conservation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
+- RS485 communication support
+- Real-time sensor data acquisition
+- Local OLED display
+- Nordic nRF52833 microcontroller
+- Battery-powered operation
+- External charging support
+- Low-power embedded design
+- Compact PCB architecture
+- Industrial sensor compatibility
 
-## React Compiler
+## Key Hardware Blocks
+- Nordic nRF52833 microcontroller
+- MAX13487 RS485 transceiver
+- 2.42-inch OLED display
+- 18650 Li-ion battery
+- Charging and power regulation circuit
+- User power switch
+- Status LED
+- Reset button
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Applications
+Where ModView Can Be Used:
+- Soil sensor monitoring
+- Agricultural research
+- Laboratory testing
+- Environmental monitoring
+- Sensor evaluation
+- Educational demonstrations
+- Embedded systems prototyping

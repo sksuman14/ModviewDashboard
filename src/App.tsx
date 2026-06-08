@@ -6,38 +6,41 @@ function App() {
   const [activeTab, setActiveTab] = useState('overview');
 
   const bannerPoints = [
-    "Features Nordic nRF52833 SoC with BLE 5.1 and RS485/422 communication",
-    "Supports SD card storage, USB-C, and Li-ion battery management",
-    "Compact design ideal for IoT, telemetry, and solar-powered systems",
+    "Supports RS485 communication and validated with Soil 7-in-1 Modbus RS485 sensor",
+    "Real-time sensor data acquisition with local 2.42-inch OLED display",
+    "Portable operation using a rechargeable 18650 Li-ion battery with power switch",
   ];
 
   const features = [
-    "High-performance Nordic nRF52833-QDAA MCU with BLE 5.1 and 2.4 GHz protocols",
-    "RS485/422 connectivity via MAX13487EESA with automatic direction control",
-    "Li-ion and solar power management with CN3791 MPPT charger support",
-    "Flexible power input options: USB-C, VIN (2–16 V), or battery",
-    "Expandable storage with microSD and W25Q16 SPI Flash for data logging",
-    "Robust protection with ESD, TVS diodes, and reverse-polarity safeguards",
+    "RS485 communication support",
+    "Real-time sensor data acquisition",
+    "Local OLED display",
+    "Nordic nRF52833 microcontroller",
+    "Battery-powered operation",
+    "External charging support",
+    "Low-power embedded design",
+    "Compact PCB architecture",
+    "Industrial sensor compatibility"
   ];
 
   const applications = [
-    "Industrial RS485 Modbus communication with BLE monitoring",
-    "Solar-powered IoT data logging and environmental monitoring",
-    "Remote telemetry and condition monitoring systems",
-    "Battery-operated BLE sensors or gateways",
-    "Wireless configuration of RS485-based devices",
-    "Energy and environmental monitoring platforms",
+    "Soil sensor monitoring",
+    "Agricultural research",
+    "Laboratory testing",
+    "Environmental monitoring",
+    "Sensor evaluation",
+    "Educational demonstrations",
+    "Embedded systems prototyping"
   ];
 
   const specifications = [
-     { label: "Input", value:  "Li-ion battery (3.7V-4.2V)"},
-    { label: "Microcontroller", value: "nRF52833-QDAA (ARM Cortex-M4F, 64 MHz, 512 KB Flash, 128 KB RAM)" },
-  
-    { label: "Interfaces", value: "RS485" },
-    { label: "Memory", value: "16 Mbit W25Q16 SPI Flash and optional microSD card" },
-    { label: "Battery Charger", value: "5V-12V DC Adapter" },
-  
-  
+    { label: "Microcontroller", value: "Nordic nRF52833" },
+    { label: "Transceiver", value: "MAX13487 RS485" },
+    { label: "Display", value: "2.42-inch OLED" },
+    { label: "Battery", value: "18650 Li-ion" },
+    { label: "Power & Charging", value: "Charging and power regulation circuit" },
+    { label: "Controls", value: "User power switch, Reset button" },
+    { label: "Indicators", value: "Status LED" },
   ];
 
   return (
@@ -60,7 +63,7 @@ function App() {
             className={`nav-item ${activeTab === 'specs' ? 'active' : ''}`}
             onClick={() => { setActiveTab('specs'); setSidebarOpen(false); }}
           >
-            ⚙️ Hardware Specs
+            ⚙️ Hardware Blocks
           </div>
           
           <div style={{ margin: '2rem 0 1rem 0', padding: '0 1rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: 600 }}>
@@ -91,81 +94,91 @@ function App() {
         <div className="dashboard-scroll">
           
           {activeTab === 'overview' && (
-            <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+            <div className="bento-grid animate-fade-in">
               
-              {/* Top Banner Image Widget */}
-              <div className="widget" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.5))' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', alignItems: 'center' }}>
-                  <h2 style={{ margin: 0 }}>ModView nRF52833 BLE + RS485 Data Logger</h2>
-                </div>
+              {/* Hero Banner (bento-large: 2 cols x 2 rows) */}
+              <div className="widget bento-large" style={{ padding: '2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1.5rem', backgroundImage: 'linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.5))' }}>
+                <h2 style={{ margin: 0, textAlign: 'center' }}>ModView nRF52833<br/>BLE + RS485 Data Logger</h2>
                 <img 
                   src="/assets/images/modview_nrf52833.png" 
                   alt="ModView Board" 
-                  style={{ maxHeight: '350px', width: 'auto', borderRadius: '0.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }} 
+                  style={{ maxHeight: '280px', width: 'auto', borderRadius: '0.5rem', boxShadow: '0 10px 30px rgba(0,0,0,0.5)', objectFit: 'contain' }} 
                 />
               </div>
 
-              {/* Three Column Dense Layout */}
-              <div className="grid grid-cols-3-layout" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-                
-                {/* Column 1: Highlights & Support */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                  <div className="widget" style={{ flex: 1 }}>
-                    <h3 style={{ marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem' }}>
-                      Key Highlights
-                    </h3>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                      {bannerPoints.map((point, idx) => (
-                        <div key={idx} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                          <div style={{ color: 'var(--accent)', marginTop: '0.1rem', fontSize: '1.25rem' }}>✓</div>
-                          <div style={{ color: 'var(--text-primary)', fontSize: '0.95rem' }}>{point}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="widget" style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05))', border: '1px solid rgba(59, 130, 246, 0.2)' }}>
-                    <h3 style={{ marginBottom: '0.5rem', color: 'var(--primary)' }}>Need Assistance?</h3>
-                    <p style={{ fontSize: '0.875rem', marginBottom: '1.5rem' }}>Contact our hardware engineering team for support or custom integrations.</p>
-                    <a href="mailto:Vikash.hardwareengineer@ihub-awadh.in" className="btn btn-primary" style={{ width: '100%' }}>Enquire</a>
-                  </div>
-                </div>
-
-                {/* Column 2: Full Features */}
-                <div className="widget">
-                  <h3 style={{ marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem' }}>
-                    Hardware Features
-                  </h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {features.map((feature, idx) => (
-                      <li key={idx} style={{ padding: '0.75rem 0', borderBottom: '1px solid var(--glass-border)', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Column 3: Applications */}
-                <div className="widget">
-                  <h3 style={{ marginBottom: '1.5rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.75rem' }}>
-                    Supported Applications
-                  </h3>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    {applications.map((app, idx) => (
-                      <li key={idx} style={{ padding: '0.75rem 0', borderBottom: '1px solid var(--glass-border)', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
-                        {app}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
+              {/* About ModView (bento-wide: 2 cols x 1 row) */}
+              <div className="widget bento-wide" style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <h3 style={{ marginBottom: '1rem', color: 'var(--primary)' }}>About ModView</h3>
+                <p style={{ lineHeight: '1.6', color: 'var(--text-secondary)' }}>
+                  ModView is a custom-designed embedded device developed for monitoring sensor data through industrial communication interfaces. The platform supports RS485 communication and is currently validated with a Soil 7-in-1 Modbus RS485 sensor. The system receives data from the sensor, processes it through the microcontroller, and displays the values on a local OLED display.
+                </p>
+                <p style={{ lineHeight: '1.6', color: 'var(--text-secondary)', marginTop: '0.5rem' }}>
+                  Designed for portable operation using a rechargeable 18650 Li-ion battery and includes a user-controlled power switch.
+                </p>
               </div>
+
+              {/* Support (bento-wide: 2 cols x 1 row) */}
+              <div className="widget bento-wide" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.05))', border: '1px solid rgba(59, 130, 246, 0.3)', position: 'relative', overflow: 'hidden' }}>
+                <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '100px', height: '100px', background: 'var(--primary)', filter: 'blur(50px)', opacity: 0.3 }}></div>
+                <h3 style={{ marginBottom: '0.5rem', color: 'var(--primary)' }}>Need Assistance?</h3>
+                <p style={{ fontSize: '0.875rem', marginBottom: '1.5rem', flex: 1 }}>Contact our hardware engineering team for support or custom integrations.</p>
+                <a href="mailto:Vikash.hardwareengineer@ihub-awadh.in" className="btn btn-primary" style={{ width: 'max-content' }}>Enquire Now</a>
+              </div>
+
+              {/* Key Highlights (bento-tall: 1 col x 2 rows) */}
+              <div className="widget bento-tall" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>✨</span> Highlights
+                </h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  {bannerPoints.map((point, idx) => (
+                    <div key={idx} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+                      <div style={{ color: 'var(--accent)', marginTop: '0.1rem', fontSize: '1.25rem' }}>✓</div>
+                      <div style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: '1.5', fontWeight: 500 }}>{point}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hardware Features (bento-large: 2 cols x 2 rows) */}
+              <div className="widget bento-large" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>⚡</span> Hardware Features
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                  {features.map((feature, idx) => (
+                    <div key={idx} className="feature-card">
+                      <div className="feature-icon">
+                        {['⚙️','📊','📟','💻','🔋','🔌','🌿','📐','🏭'][idx % 9]}
+                      </div>
+                      <div style={{ color: 'var(--text-primary)', fontSize: '0.9rem', fontWeight: 500 }}>
+                        {feature}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Applications (bento-tall: 1 col x 2 rows) */}
+              <div className="widget bento-tall" style={{ display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span style={{ fontSize: '1.5rem' }}>🎯</span> Applications
+                </h3>
+                <div className="app-tags" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                  {applications.map((app, idx) => (
+                    <div key={idx} className="app-tag" style={{ width: '100%' }}>
+                      {app}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           )}
 
           {activeTab === 'specs' && (
             <div className="animate-fade-in">
-              <h2 style={{ marginBottom: '2rem' }}>Hardware Specifications</h2>
+              <h2 style={{ marginBottom: '2rem' }}>Hardware Blocks</h2>
               
               <div className="widget" style={{ padding: 0, overflow: 'hidden' }}>
                 <table className="data-table">
