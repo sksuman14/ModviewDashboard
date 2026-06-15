@@ -22,6 +22,7 @@ const deploymentImages = [
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null);
 
   const bannerPoints = [
     "Supports RS485 communication and validated with Soil 7-in-1 Modbus RS485 sensor",
@@ -233,7 +234,13 @@ function App() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
                 {deploymentImages.map((img, idx) => (
                   <div key={idx} className="widget" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <img src={img.src} alt={img.alt} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }} />
+                    <img 
+                      src={img.src} 
+                      alt={img.alt} 
+                      className="deployment-img" 
+                      style={{ width: '100%', height: 'auto', maxHeight: '350px', objectFit: 'contain', borderRadius: '0.5rem' }} 
+                      onClick={() => setLightboxImg(img.src)}
+                    />
                     <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center' }}>
                       {img.title}
                     </div>
@@ -245,6 +252,14 @@ function App() {
 
         </div>
       </main>
+
+      {/* Lightbox Modal */}
+      {lightboxImg && (
+        <div className="lightbox-overlay" onClick={() => setLightboxImg(null)}>
+          <button className="lightbox-close" onClick={(e) => { e.stopPropagation(); setLightboxImg(null); }}>✕</button>
+          <img src={lightboxImg} alt="Enlarged view" className="lightbox-content animate-fade-in" onClick={(e) => e.stopPropagation()} />
+        </div>
+      )}
     </div>
   );
 }
