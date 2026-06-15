@@ -1,6 +1,23 @@
 import { useState } from 'react';
 import './index.css';
 import modviewImg from './assets/Modview.png';
+import img1 from './assets/images/1.jpeg';
+import img2 from './assets/images/2.jpeg';
+import img3 from './assets/images/3.jpeg';
+import img4 from './assets/images/4.jpeg';
+import img5 from './assets/images/5.jpeg';
+import img6 from './assets/images/6.jpeg';
+import img7 from './assets/images/7.jpeg';
+
+const deploymentImages = [
+  { src: img1, alt: "Deployment Image 1", title: "Deployment 1" },
+  { src: img2, alt: "Deployment Image 2", title: "Deployment 2" },
+  { src: img3, alt: "Deployment Image 3", title: "Deployment 3" },
+  { src: img4, alt: "Deployment Image 4", title: "Deployment 4" },
+  { src: img5, alt: "Deployment Image 5", title: "Deployment 5" },
+  { src: img6, alt: "Deployment Image 6", title: "Deployment 6" },
+  { src: img7, alt: "Deployment Image 7", title: "Deployment 7" }
+];
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -65,6 +82,12 @@ function App() {
             onClick={() => { setActiveTab('specs'); setSidebarOpen(false); }}
           >
             ⚙️ Hardware Blocks
+          </div>
+          <div 
+            className={`nav-item ${activeTab === 'deployment' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('deployment'); setSidebarOpen(false); }}
+          >
+            📸 Deployment
           </div>
           
           <div style={{ margin: '2rem 0 1rem 0', padding: '0 1rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: 600 }}>
@@ -174,6 +197,8 @@ function App() {
                 </div>
               </div>
 
+
+
             </div>
           )}
 
@@ -198,6 +223,22 @@ function App() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'deployment' && (
+            <div className="animate-fade-in">
+              <h2 style={{ marginBottom: '2rem' }}>Deployment Scenarios</h2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+                {deploymentImages.map((img, idx) => (
+                  <div key={idx} className="widget" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <img src={img.src} alt={img.alt} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }} />
+                    <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center' }}>
+                      {img.title}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
