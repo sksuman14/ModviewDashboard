@@ -439,3 +439,8 @@ p {
 .lightbox-close:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* Hide Leaflet Attribution */
+.leaflet-control-attribution {
+  display: none !important;
+}

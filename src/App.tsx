@@ -8,6 +8,7 @@ import img4 from './assets/images/4.jpeg';
 import img5 from './assets/images/5.jpeg';
 import img6 from './assets/images/6.jpeg';
 import img7 from './assets/images/7.jpeg';
+import MapViewer from './MapViewer';
 
 const deploymentImages = [
   { src: img1, alt: "Deployment Image 1", title: "Deployment 1" },
@@ -79,16 +80,16 @@ function App() {
             📊 Overview
           </div>
           <div 
+            className={`nav-item ${activeTab === 'deployment' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('deployment'); setSidebarOpen(false); }}
+          >
+            📸 Deployments
+          </div>
+          <div 
             className={`nav-item ${activeTab === 'specs' ? 'active' : ''}`}
             onClick={() => { setActiveTab('specs'); setSidebarOpen(false); }}
           >
             ⚙️ Hardware Blocks
-          </div>
-          <div 
-            className={`nav-item ${activeTab === 'deployment' ? 'active' : ''}`}
-            onClick={() => { setActiveTab('deployment'); setSidebarOpen(false); }}
-          >
-            📸 Deployment
           </div>
           
           <div style={{ margin: '2rem 0 1rem 0', padding: '0 1rem', fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-secondary)', fontWeight: 600 }}>
@@ -229,26 +230,34 @@ function App() {
           )}
 
           {activeTab === 'deployment' && (
-            <div className="animate-fade-in">
-              <h2 style={{ marginBottom: '2rem' }}>Deployment Scenarios</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
-                {deploymentImages.map((img, idx) => (
-                  <div key={idx} className="widget" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <img 
-                      src={img.src} 
-                      alt={img.alt} 
-                      className="deployment-img" 
-                      style={{ width: '100%', height: 'auto', maxHeight: '350px', objectFit: 'contain', borderRadius: '0.5rem' }} 
-                      onClick={() => setLightboxImg(img.src)}
-                    />
-                    <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center' }}>
-                      {img.title}
+            <div className="animate-fade-in" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+              <h2 style={{ marginBottom: '0rem' }}>Deployments</h2>
+              <div>
+                <MapViewer />
+              </div>
+              
+              <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem' }}>
+                  {deploymentImages.map((img, idx) => (
+                    <div key={idx} className="widget" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                      <img 
+                        src={img.src} 
+                        alt={img.alt} 
+                        className="deployment-img" 
+                        style={{ width: '100%', height: 'auto', maxHeight: '350px', objectFit: 'contain', borderRadius: '0.5rem' }} 
+                        onClick={() => setLightboxImg(img.src)}
+                      />
+                      <div style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', textAlign: 'center' }}>
+                        {img.title}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           )}
+
+
 
         </div>
       </main>
